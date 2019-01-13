@@ -1,0 +1,13 @@
+.Feedback {
+  width: 100%;
+  position: fixed;
+  top: 70;
+  background-color: white;
+  clearfix: both;
+  z-index: 9999999;
+}
+
+.Feedback__Body {
+  text-align: center;
+  padding: 15px;
+}

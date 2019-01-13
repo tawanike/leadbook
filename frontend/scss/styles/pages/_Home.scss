@@ -1,0 +1,69 @@
+.Home {
+  background-color: white;
+}
+
+.Home__Lane {
+  width: 100%;
+  padding: 20px;
+}
+
+.Home__Image {
+  width: 100%;
+  margin: 5px 5px 50px 5px;
+
+  img {
+    display: block;
+    width: 50%;
+    margin: 20px auto;
+  }
+}
+
+.Home__Text {
+  h3 {
+    text-align: center;
+  }
+}
+
+/* Desktops and laptops ----------- */
+@media only screen and (min-width : 1224px) {
+/* Styles */
+  .Home {}
+
+  .Home__Lane {
+    width: 100%;
+    float: left;
+  }
+
+  .Home__Image {
+    width: 40%;
+    margin: 5px 5px 50px 5px;
+
+    img {
+      display: block;
+      width: 90%;
+      margin: 20px auto;
+    }
+  }
+
+  .Home__Text {
+    width: 59%;
+    padding-top: 80px;
+
+    p {
+      padding: 40px 40px 40px 10px;
+      font-size: 22px;
+    }
+  }
+
+  .Home__Image--left {
+    float: left;
+  }
+
+  .Home__Image--right {
+    float: right;
+  }
+
+  .Home__Text--right {
+    float: right;
+  }
+}

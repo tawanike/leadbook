@@ -1,0 +1,58 @@
+.Navigation {
+  padding: 15px 10px 10px 10px;
+  background-color: #FFFFFF;
+  box-shadow: 2px 2px 5px #aaaaaa;
+}
+
+.Navigation__Logo {
+  display: inline-block;
+  width: 30%;
+  font-size: 22px;
+}
+
+.Navigation__Menu {
+  display: inline-block;
+  width: 68%;
+
+  ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    float: right;
+
+    li {
+      float: left;
+      width: auto;
+    }
+  }
+}
+
+.Navigation__Button {
+  @include button;
+  background-color: white;
+  color: $primary;
+}
+
+.Navigation__Button:hover {
+  text-decoration: none;
+}
+
+.Navigation__Button--primary {
+  border: 2px solid $primary;
+  background-color: $primary;
+  color: $text-primary;
+}
+
+.Navigation__Button--primary:hover {
+  background-color: $text-primary;
+  color: $primary;
+}
+
+.Navigation__Button--outline {
+  border: 2px solid $primary;
+}
+
+.Navigation__Button--outline:hover {
+  background-color: $primary;
+  color: $text-primary;
+}

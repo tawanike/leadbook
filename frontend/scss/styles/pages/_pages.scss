@@ -1,0 +1,12 @@
+.PagesList {
+  @at-root #{&}__Item {
+    margin: 0px;
+    border-bottom: 1px solid #cecece;
+    padding:10px;
+  }
+
+  @at-root #{&}__Image {
+    width: 100%;
+    border-radius: 3px;
+  }
+}

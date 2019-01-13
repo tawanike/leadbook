@@ -1,0 +1,41 @@
+.Button {
+  background-color: $primary;
+  border: 2px solid $primary;
+  padding: 15px 30px 15px 30px;
+  text-transform: uppercase;
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.Button:hover {
+  background-color: #FFFFFF;
+  border: 2px solid $primary;
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.Button__outline {
+  background-color: #FFFFFF;
+  border: 2px solid $primary;
+  padding: 15px 30px 15px 30px;
+  text-transform: uppercase;
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.Button__outline:hover {
+  background-color: $primary;
+  border: 2px solid $primary;
+  color: $text-primary;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.Button__outline--right {
+  float: right;
+}

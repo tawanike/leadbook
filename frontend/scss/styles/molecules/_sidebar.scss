@@ -1,0 +1,39 @@
+.Sidebar {
+  width: 116px;
+  float: left;
+  background-color: rgb(32, 32, 32);
+  padding: 2px;
+  color: $text-primary;
+  margin: 0px;
+  height: 100vh;
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 50px;
+
+  ul{
+    li {
+      text-align: center;
+      line-height: 40px;
+      text-transform: uppercase;
+
+      a{
+        padding: 6px 8px 6px 12px;
+        text-decoration: none;
+        font-size: 18px;
+        color: #818181;
+        display: block;
+      }
+      a:hover{
+
+      }
+    }
+  }
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
