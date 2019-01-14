@@ -1,0 +1,44 @@
+a, a:visited {
+  color: #ff520d;
+  text-decoration: none; }
+
+a:hover {
+  opacity: 0.5; }
+
+.Button {
+  background-color: #ff520d;
+  color: #ffffff;
+  text-transform: uppercase;
+  border: 1px solid #ff520d; }
+  .Button:hover {
+    background-color: #ffffff;
+    color: #ff520d; }
+  .Button--outline {
+    background-color: #ffffff;
+    border: 1px solid #ff520d; }
+.Auth {
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  margin: 0px auto; }
+
+@media only screen and (min-width: 1224px) {
+  .Auth {
+    width: 30%;
+    text-align: center;
+    padding: 30px;
+    margin: 0px auto; }
+    .Auth h3 {
+      margin-bottom: 40px; } }
+.Navigation {
+  background-color: #FFFFFF;
+  border-bottom: 1px solid grey;
+  margin-bottom: 10px;
+}
+.Alerts {
+  width: 100%;
+  height: 30px; }
+  .Alerts__Body h4 {
+    text-align: center; }
+  .Alerts__Body--info {
+    background-color: #17a2b8; }

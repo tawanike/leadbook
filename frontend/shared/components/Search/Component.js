@@ -1,9 +1,9 @@
+import './Style.scss';
 import React from 'react';
 import axios from 'axios';
 import * as actions from './actions';
 import { Link } from "react-router-dom";
 import SearchResults from './SearchResults';
-
 
 class SearchComponent extends React.Component {
   constructor(props) {
@@ -33,7 +33,7 @@ class SearchComponent extends React.Component {
   }
 
   search (){
-    const { dispatch } = this.props;
+    const { dispatch, history } = this.props;
 
     axios({
       method: 'get',
@@ -41,7 +41,11 @@ class SearchComponent extends React.Component {
       // headers: { "CSRF-Token": window.user.csrfToken },
     })
     .then(response => {
-      dispatch(actions.search(response.data.data));
+      dispatch(actions.search(response.data));
+      history.push({
+        pathname: '/search',
+        search: `?q=${this.state.company}`
+      })
     })
     .catch(error => {
       console.log('ERROR', error)
@@ -49,19 +53,20 @@ class SearchComponent extends React.Component {
   }
 
   render() {
-    return(<div className="Search ">
+    const { search } = this.props;
 
-      <div className="form-row">
-        <div className="col-9">
-          <input type="text" name="company" className="form-control"
+    return(<div className="Search">
+    <div className="container">
+      <div className="form-row Search__Box">
+        <div className="col-8 offset-md-2">
+          <input type="text" name="company" className="Search__Input"
             placeholder="Enter company name" onChange={ this.handleChange } />
-        </div>
-        <div className="col-3">
-          <button onClick={ this.search }>Search</button>
+          <button className="Search__Button" onClick={ this.search }>Search</button>
         </div>
       </div>
-      <h3>Search</h3>
+      <p className="Search__Count">Search found { search.details.count } companies.</p>
       <SearchResults {...this.props} />
+    </div>
   </div>);
   }
 

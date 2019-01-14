@@ -20,7 +20,8 @@ def search(request):
         page = request.GET.get('page', 1)
 
         try:
-            companies = Company.objects.filter(name=request.GET.get('company'))
+            companies = Company.objects.filter(name__contains=request.GET.get('company'))
+            print(companies)
         except Company.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 

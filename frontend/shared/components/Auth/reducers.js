@@ -2,7 +2,8 @@ import * as types from './types';
 
 let initialState = {
   isLoggedIn: false,
-  sessions: []
+  is_activated: false,
+  error: false
 };
 
 export default function(state = initialState, action) {
@@ -10,8 +11,8 @@ export default function(state = initialState, action) {
     case types.USER_SIGN_IN:
       state = Object.assign({}, state, { isLoggedIn: action.payload });
     break;
-    case types.GET_PLAYLISTS:
-      state = Object.assign({}, state, { sessions: action.payload });
+    case types.USER_ACCOUNT_ACTIVATION_ERROR:
+      state = Object.assign({}, state, { error: true });
     break;
     default:
       return state

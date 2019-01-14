@@ -2,27 +2,20 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url
 from django.views.generic import TemplateView
+
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
-from rest_framework import routers
 
-from leadbook.profiles.views import ProfileViewSet
-from leadbook.companies.views import CompanyViewSet
-from leadbook.favourites.views import FavouriteViewSet
-from leadbook.search import views
-
-router = routers.DefaultRouter()
-
-router.register(r'users', ProfileViewSet)
-router.register(r'companies', CompanyViewSet)
-router.register(r'favourites', FavouriteViewSet)
+from leadbook.companies import views as companies_views
+from leadbook.favourites import views as favourites_views
+from leadbook.search import views as search_views
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    url('api/v1/', include(router.urls)),
+    url('api/v1/auth/', csrf_exempt(obtain_jwt_token)),
     url('api/v1/auth/refresh/', refresh_jwt_token),
-    url('api/v1/auth/', obtain_jwt_token),
     url('api/v1/auth/verify/', verify_jwt_token),
-    url('api/v1/search/', views.search),
+    url('api/v1/', include('leadbook.api.v1.urls')),
+    path('admin/', admin.site.urls),
     url(r'^', TemplateView.as_view(template_name="index.html")),
 ]

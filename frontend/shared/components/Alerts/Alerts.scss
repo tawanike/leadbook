@@ -1,0 +1,33 @@
+.Alert {
+  width: 100%;
+  height: 30px;
+  background-color: #17a2b8;
+
+
+  @at-root #{&}__Body {
+    padding: 10px;
+    h4 {
+      text-align: center;
+    }
+  }
+
+  @at-root #{&}__Body--success {
+    background-color: #28a745;
+  }
+
+  @at-root #{&}__Body--primary {
+    background-color: #ff520d;
+  }
+
+  @at-root #{&}__Body--warning {
+    background-color: #ffc107;
+  }
+
+  @at-root #{&}__Body--info {
+    background-color: #17a2b8;
+  }
+
+  @at-root #{&}__Body--danger {
+    background-color: #dc3545;
+  }
+}

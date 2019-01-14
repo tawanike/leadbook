@@ -1,0 +1,111 @@
+a, a:visited {
+  color: #ff520d;
+  text-decoration: none; }
+
+a:hover {
+  opacity: 0.5; }
+
+.Button {
+  background-color: #ff520d;
+  color: #ffffff;
+  text-transform: uppercase;
+  border: 1px solid #ff520d; }
+  .Button--primary {
+    background-color: #ff520d;
+    color: #ffffff; }
+  .Button:hover {
+    background-color: #ffffff;
+    color: #ff520d; }
+  .Button--outline {
+    background-color: #ffffff;
+    border: 1px solid #ff520d; }
+.Search {
+  margin-top: 10px; }
+  .Search__Box {
+    padding: 20px; }
+  .Search__Input {
+    width: 100%;
+    height: 45px;
+    position: absolute;
+    margin: 0px auto;
+    padding: 10px 0px 10px 10px;
+    border: 2px solid #ff520d;
+    border-radius: 5px;
+    font-size: 24px;
+    font-weight: lighter; }
+  .Search__Input:focus {
+    border: 2px solid #ff520d;
+    outline: 0px; }
+  .Search__Button {
+    width: 100px;
+    height: 45px;
+    position: relative;
+    float: right;
+    top: 0px;
+    right: -10px;
+    background-color: #ffffff;
+    border: 2px solid #ff520d;
+    margin: 0px;
+    border-radius: 0px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    text-transform: uppercase;
+    outline: 0px; }
+
+.Result {
+  height: 200px;
+  padding: 10px;
+  border-bottom: 1px solid #ff520d;
+  border-top: 1px solid #ff520d; }
+  .Result__Logo {
+    border: 1px solid #ff520d; }
+  .Result__Body {
+    border: 1px solid #ff520d; }
+.Auth {
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  margin: 0px auto; }
+
+.Feedback__Input {
+  color: #495057;
+  border: 1px solid #ced4da; }
+
+.Feedback__Input--error {
+  color: red;
+  border: 1px solid red; }
+
+.Feedback__Text--success {
+  color: green; }
+
+@media only screen and (min-width: 1224px) {
+  .Auth {
+    width: 30%;
+    text-align: center;
+    padding: 30px;
+    margin: 0px auto; }
+    .Auth h3 {
+      margin-bottom: 40px; } }
+.Navigation {
+  background-color: #FFFFFF;
+  border-bottom: 1px solid grey;
+  margin-bottom: 0px;
+}
+.Alert {
+  width: 100%;
+  height: 30px;
+  background-color: #17a2b8; }
+  .Alert__Body {
+    padding: 10px; }
+    .Alert__Body h4 {
+      text-align: center; }
+  .Alert__Body--success {
+    background-color: #28a745; }
+  .Alert__Body--primary {
+    background-color: #ff520d; }
+  .Alert__Body--warning {
+    background-color: #ffc107; }
+  .Alert__Body--info {
+    background-color: #17a2b8; }
+  .Alert__Body--danger {
+    background-color: #dc3545; }

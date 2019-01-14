@@ -1,0 +1,39 @@
+.Auth {
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  margin: 0px auto;
+
+  @at-root #{&}__SignUp {}
+}
+
+.Feedback {
+  @at-root #{&}__Input {
+    color: #495057;
+    border: 1px solid #ced4da;
+  }
+
+  @at-root #{&}__Input--error {
+    color: red;
+    border: 1px solid red;
+  }
+
+  @at-root #{&}__Text--success{
+    color: green;
+  }
+}
+
+
+@media only screen and (min-width : 1224px) {
+  .Auth {
+    width: 30%;
+    text-align: center;
+    padding: 30px;
+    margin: 0px auto;
+
+    h3 {
+      margin-bottom: 40px;
+    }
+  }
+
+}

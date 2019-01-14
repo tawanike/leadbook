@@ -1,0 +1,9 @@
+Hi {{ first_name }},
+
+Thank you for creating an account.
+
+To activate your account please follow this link {{ activation_code}}
+
+Regards
+
+The Awesome Teams

@@ -1,0 +1,30 @@
+a, a:visited {
+  color: #ff520d;
+  text-decoration: none;
+}
+
+a:hover {
+  opacity: 0.5;
+}
+
+.Button {
+  background-color: #ff520d;
+  color: #ffffff;
+  text-transform: uppercase;
+  border: 1px solid #ff520d;
+
+  @at-root #{&}--primary{
+    background-color: #ff520d;
+    color: #ffffff;
+  }
+  @at-root #{&}:hover{
+    background-color: #ffffff;
+    color: #ff520d;
+  }
+
+  @at-root #{&}--outline {
+    background-color: #ffffff;
+    border: 1px solid #ff520d;
+  }
+
+}

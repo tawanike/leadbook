@@ -1,4 +1,4 @@
-import * as authActions from '../components/Auth/SignIn/actions';
+import * as authActions from '../components/Auth/actions';
 const jwtDecode = require('jwt-decode');
 
 const authMiddleware = store => next => action => {

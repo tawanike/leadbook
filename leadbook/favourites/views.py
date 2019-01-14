@@ -1,11 +1,29 @@
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from rest_framework import status
+
 from leadbook.favourites.models import Favourite
-from rest_framework import viewsets
 from leadbook.favourites.serializers import FavouriteSerializer
 
 
-class FavouriteViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows users to be viewed or edited.
-    """
-    queryset = Favourite.objects.all()
-    serializer_class = FavouriteSerializer
+@api_view(['GET', 'POST'])
+def list_create(request):
+    if request.method == 'POST':
+        serializer = FavouriteSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    else:
+        return Response({"message": "Hello, world!"})
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def details(request, id):
+    if request.method == 'GET':
+        return Response({"message": "Got some data!", "data": request.data})
+    elif request.method == 'PUT':
+        return Response({"message": "Got some data!", "data": request.data})
+    elif request.method == 'DELETE':
+        return Response({"message": "Got some data!", "data": request.data})

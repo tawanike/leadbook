@@ -11,8 +11,8 @@ module.exports = {
   mode: 'development',
   watch: true,
   output: {
-      path: path.resolve('./static/js'),
-      filename: "[name]-[hash].js"
+      path: path.resolve('./static'),
+      filename: "js/[name]-[hash].js"
   },
   devServer: {
     contentBase: path.join(__dirname, './templates'),
@@ -27,6 +27,13 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.scss$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'sass-loader']
+        })
+      },
+      {
         test: [/\.svg$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
         loader: "file-loader",
         options: {
@@ -37,6 +44,7 @@ module.exports = {
       {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
           use: [
             {
               loader: "css-loader",
@@ -54,29 +62,11 @@ module.exports = {
         exclude: /(node_modules)/,
         loader: "babel-loader",
         query: { presets: ["react-app"] }
-      },
-      {
-        test: /\.scss$/,
-        exclude: /(node_modules)/,
-        loader: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: [
-            {
-              loader: "css-loader",
-              options: { minimize: true }
-            },
-            {
-              loader: "sass-loader",
-              options: {
-                includePaths: ["./node-modules"]
-              }
-            }
-          ]
-        })
       }
     ]
   },
   plugins: [
+    new ExtractTextPlugin('css/[name]-[hash].css'),
     new BundleTracker({filename: './webpack-stats.json'}),
     new CleanWebpackPlugin(['./static']),
   ]

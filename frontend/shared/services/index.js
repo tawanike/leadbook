@@ -1,29 +1,66 @@
 import axios from 'axios';
-const API_URL = 'http://localhost:8000';
+const API_URL = 'http://localhost:8000/api/v1';
 
-export default class CustomersService{
+axios.defaults.headers = {
+       'Content-Type': 'application/json',
+   }
 
-    constructor(){}
+export default class Service{
 
-    find() {
-        const url = `${API_URL}/api/customers/`;
+    constructor(){
+      this.config = {
+        headers: { 'Content-Type': 'application/json' },
+      }
+    }
+
+
+    find(endpoint) {
+        const url = `${API_URL}${endpoint}`;
         return axios.get(url).then(response => response.data);
     }
 
-    findOne(id) {
-        const url = `${API_URL}/api/customers/${id}`;
+    findOne(endpoint, id) {
+        const url = `${API_URL}/${endpoint}/${id}`;
         return axios.get(url).then(response => response.data);
     }
-    delete(id){
-        const url = `${API_URL}/api/customers/${id}`;
+
+    findByUsernameOrEmail(endpoint, query, field=null) {
+      if(!field){
+        const url = `${API_URL}/${endpoint}/?username=${query}`;
+        return axios.get(url);
+      } else {
+        const url = `${API_URL}/${endpoint}/?${field}=${query}`;
+        return axios.get(url);
+      }
+    }
+
+    delete(endpoint, id){
+        const url = `${API_URL}/${endpoint}/${id}`;
         return axios.delete(url);
     }
-    create(customer){
-        const url = `${API_URL}/api/customers/`;
-        return axios.post(url,customer);
+    create(endpoint, data){
+        return axios({
+          method: 'POST',
+          url: `${API_URL}/${endpoint}`,
+          data: data
+        });
     }
-    update(customer){
-        const url = `${API_URL}/api/customers/${customer.pk}`;
-        return axios.put(url,customer);
+
+    update(endpoint, data){
+        const url = `${API_URL}${endpoint}/${id}`;
+        return axios.put(url, data);
+    }
+
+    activate(activation_code) {
+      const url = `${API_URL}/users/activate/${activation_code}`;
+      return axios.get(url)
+    }
+
+    authorise(credentials){
+        return axios({
+          method: 'POST',
+          url: `${API_URL}/auth/`,
+          data: credentials
+        });
     }
 }

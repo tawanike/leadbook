@@ -1,5 +1,8 @@
-from django.urls import path
+from django.conf.urls import url
 
-from . import views
+from leadbook.favourites import views
 
-urlpatterns = []
+urlpatterns = [
+    url('(?P<id>[0-9]+)$', views.details),
+    url('', views.list_create),
+]
