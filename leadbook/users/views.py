@@ -52,7 +52,7 @@ def activate(request, code):
 @api_view(['POST'])
 @authentication_classes(())
 @permission_classes(())
-def list_create(request):
+def create(request):
     serializer = UserSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()

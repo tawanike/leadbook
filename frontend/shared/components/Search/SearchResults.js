@@ -14,7 +14,9 @@ class SearchResultComponent extends React.Component {
     const { search } = this.props
     return search.results.map((result, index) => {
       return(<div className="Result" key={index}>
-      <div className="Result__Logo"></div>
+      <div className="Result__Logo">
+        <img src={ result.logo } />
+      </div>
       <div className="Result__Body">
         <h3 className="Result__Title">{ result.name }</h3>
         <p>{ result.address }</p>
