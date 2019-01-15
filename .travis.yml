@@ -10,6 +10,12 @@ env:
 install:
   - pip install -r requirements.txt
 
+services:
+  - postgresql
+
+before_script:
+  - psql -c 'create database leadbook_test;' -U postgres
+
 script: python manage.py test
 
 notifications:
