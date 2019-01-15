@@ -10,10 +10,7 @@ from leadbook.companies.models import Company
 from leadbook.companies.serializers import CompanySerializer
 
 # Initialize the api client
-user = User.objects.get(username='codebender')
 client = APIClient()
-client.force_authenticate(user=user)
-# client.credentials(HTTP_AUTHORIZATION='JWT ' + token.key)
 
 class GetAllCompaniesTestCase(TestCase):
     """ Test module for GET all companies API """
