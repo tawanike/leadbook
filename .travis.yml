@@ -10,7 +10,7 @@ env:
 install:
   - pip install tox
 
-script: tox
+script: python manage.py test
 
 notifications:
   slack: techproitservices:XsEF41X8AaQfMPg9I5XL10Gr
