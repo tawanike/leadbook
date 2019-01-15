@@ -17,7 +17,9 @@ before_script:
   - psql -c 'create database leadbook;' -U postgres
 
 
-script: python manage.py test
+script:
+  - python migrate
+  - python manage.py test
 
 notifications:
   slack: techproitservices:XsEF41X8AaQfMPg9I5XL10Gr
