@@ -6,13 +6,37 @@
   "scripts": {
     "dev": "NODE_ENV=development webpack-dev-server --hot -w --open",
     "build": "NODE_ENV=production webpack",
-    "test": "NODE_ENV=test mocha ./test/**/*.js --timeout 10000"
+    "test:watch": "npm test -- --watch",
+    "test": "NODE_ENV=test jest --no-cache"
+  },
+  "jest": {
+    "verbose": true,
+    "setupFiles": [
+      "./setupTests.js"
+    ],
+    "transform": {
+      "^.+\\.js$": "babel-jest",
+      "^.+\\.(css|scss|less)$": "jest-css-modules"
+    },
+    "globals": {
+      "NODE_ENV": "test"
+    },
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "src/frontend",
+      "src/shared"
+    ]
   },
   "dependencies": {
     "axios": "^0.18.0",
     "connected-react-router": "^6.1.0",
     "history": "^4.7.2",
     "jwt-decode": "^2.2.0",
+    "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-redux": "^6.0.0",
@@ -26,16 +50,23 @@
   "devDependencies": {
     "autoprefixer": "^9.1.5",
     "babel-core": "^6.26.3",
+    "babel-jest": "^23.6.0",
     "babel-loader": "7",
+    "babel-preset-env": "^1.7.0",
     "babel-preset-react-app": "^3.1.2",
     "clean-webpack-plugin": "^1.0.0",
     "css-loader": "^2.1.0",
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.7.1",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^2.0.0",
     "html-webpack-plugin": "^3.2.0",
+    "jest": "^23.6.0",
+    "jest-css-modules": "^1.1.0",
     "node-sass": "^4.10.0",
     "postcss-loader": "^3.0.0",
     "react-hot-loader": "^4.3.12",
+    "react-test-renderer": "^16.7.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.27.1",

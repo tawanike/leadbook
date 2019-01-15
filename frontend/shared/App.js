@@ -1,6 +1,7 @@
 import './App.scss';
 import React from 'react';
 import routes from './routes';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 import Header from './components/Partials/Header';

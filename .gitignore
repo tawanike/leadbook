@@ -126,3 +126,6 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# Jest and Enzyme Tests
+__snapshots__/

@@ -3,12 +3,22 @@ python:
     - "3.5"
 cache:
   pip: true
+  yarn: true
+  directories:
+    - '.eslintcache'
+    - 'node_modules'
+
+
+before_install:
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
+  - export PATH="$HOME/.yarn/bin:$PATH"
 
 env:
   - TOXENV=py35
 
 install:
   - pip install -r requirements.txt
+  - yarn install
 
 services:
   - postgresql
@@ -16,10 +26,10 @@ services:
 before_script:
   - psql -c 'create database leadbook;' -U postgres
 
-
 script:
   - python manage.py migrate
   - python manage.py test
+  - yarn test
 
 notifications:
   slack: techproitservices:XsEF41X8AaQfMPg9I5XL10Gr
