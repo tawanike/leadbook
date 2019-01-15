@@ -91,3 +91,6 @@ class CompanyTestCase(TestCase):
         company.save()
 
         self.assertEqual(company.address, '123 Edgemoor Road, Hatfield')
+
+    def test_company_create_invalid_company(self):
+        self.assertEqual(True, False)

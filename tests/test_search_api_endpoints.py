@@ -20,3 +20,11 @@ class SearchTestCase(TestCase):
 
     def test_search_without_keywords(self):
         self.assertEqual(True, False)
+
+    def test_pagination_is_ten(self):
+        self.assertEqual(True, False)
+        # response = self.client.get(reverse('search'))
+        # self.assertEqual(response.status_code, 200)
+        # self.assertTrue('is_paginated' in response.context)
+        # self.assertTrue(response.context['is_paginated'] == True)
+        # self.assertTrue(len(response.context['author_list']) == 10)
