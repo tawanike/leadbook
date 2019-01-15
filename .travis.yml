@@ -15,9 +15,9 @@ services:
 
 before_script:
   - psql -c 'create database leadbook;' -U postgres
-  - psql -c 'CREATE USER leadbook WITH PASSWORD leadbook;' -U postgres
+  - psql -c 'CREATE USER leadbook WITH PASSWORD "leadbook";' -U postgres
   - psql -c 'GRANT ALL PRIVILEGES ON DATABASE leadbook TO leadbook;' -U postgres
-  
+
 script: python manage.py test
 
 notifications:
