@@ -149,6 +149,6 @@ WEBPACK_LOADER = {
         }
 }
 
-SENDGRID_API_KEY  = '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'
+SENDGRID_API_KEY  = ''
 SENDGRID_SANDBOX_MODE_IN_DEBUG = False
 EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
