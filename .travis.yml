@@ -18,7 +18,7 @@ before_script:
 
 
 script:
-  - python migrate
+  - python manage.py migrate
   - python manage.py test
 
 notifications:
