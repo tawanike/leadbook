@@ -20,6 +20,7 @@ class BaseTestCase(TestCase):
             self.username, self.email, self.password)
         self.profile = UserProfile.objects.get(user__username=self.username)
         self.api_url = 'http://localhost:8000/api/v1/users/'
+        self.auth_url = 'http://localhost:8000/api/v1/auth/token'
         self.client = APIClient()
         self.data = {
             'username': self.username,
@@ -31,6 +32,14 @@ class BaseTestCase(TestCase):
             'password': self.password,
             'email': self.email
         }
+        user = User.objects.get(username=self.username)
+        user.is_active = True
+        user.save()
+
+        self.token = self.client.post(self.auth_url, {
+            'username': self.username,
+            'password': self.password
+        }, format='json')
 
 class UserTestCase(BaseTestCase):
     def test_users_check_username_availability(self):
@@ -64,11 +73,12 @@ class UserTestCase(BaseTestCase):
         self.assertEqual(profile.user.username, self.username)
 
     def test_users_get_user_profile(self):
+        self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token.data.get('token'))
         response = self.client.get(self.api_url + '1', self.data, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data.get('username'), self.username)
 
-    def test_users_account_in_active_on_creation(self):
+    def test_users_account_inactive_on_creation(self):
         user = User.objects.get(username=self.username)
         self.assertEqual(user.is_active, False)
 
@@ -81,20 +91,23 @@ class UserTestCase(BaseTestCase):
         self.assertEqual(response.data.get('username'), self.username)
 
     def test_users_change_password(self):
+        self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token.data.get('token'))
         self.assertEqual(True, False)
 
     def test_users_update_profile(self):
+        self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token.data.get('token'))
         """ Update user's first_name """
         response = self.client.put(self.api_url + '1',
                                     { 'first_name': self.first_name }, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         resp = self.client.get(self.api_url + '1', self.data, format='json')
-        
+
         """ Check if API returns an updated user's first_name  """
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
         self.assertEqual(resp.data.get('first_name'), self.first_name)
 
     def test_users_delete_profile(self):
+        self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token.data.get('token'))
         response = self.client.delete(self.api_url + '1')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(response.data.get('username'), None)

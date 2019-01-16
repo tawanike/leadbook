@@ -12,29 +12,41 @@ from leadbook.favourites.serializers import FavouriteSerializer
 class BaseTestCase(TestCase):
 
     def setUp(self):
+        self.client = APIClient()
+        self.api_url = 'http://localhost:8000/api/v1/search/?company='
+        self.auth_url = 'http://localhost:8000/api/v1/auth/token'
         self.email = 'johndoe@example.com'
         self.username = 'johndoe'
         self.password = 'password'
         self.user = User.objects.create_user(
             self.username, self.email, self.password)
 
-        self.data = {
+        user = User.objects.get(username=self.username)
+        user.is_active = True
+        user.save()
+
+        self.token = self.client.post(self.auth_url, {
             'username': self.username,
             'password': self.password
-        }
+        }, format='json')
 
 class CompanyFollowTestCase(BaseTestCase):
     def test_follow_company(self):
+        self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token.data.get('token'))
         self.assertEqual(True, False)
 
     def test_follow_check_if_user_already_follows_company(self):
+        self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token.data.get('token'))
         self.assertEqual(True, False)
 
     def test_follow_unfollow_company(self):
+        self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token.data.get('token'))
         self.assertEqual(True, False)
 
     def test_follow_following_already_followed_company(self):
+        self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token.data.get('token'))
         self.assertEqual(True, False)
 
     def test_follow_unfollowing_already_unfollowed_company(self):
+        self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token.data.get('token'))
         self.assertEqual(True, False)
