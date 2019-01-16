@@ -11,7 +11,6 @@ def search(request):
     """
         Search companies by name
     """
-    print('This is search')
     if request.method == 'GET':
         data = []
         nextPage = 1
@@ -21,7 +20,6 @@ def search(request):
 
         try:
             companies = Company.objects.filter(name__contains=request.GET.get('company'))
-            print(companies)
         except Company.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
@@ -39,8 +37,6 @@ def search(request):
             nextPage = data.next_page_number()
         if data.has_previous():
             previousPage = data.previous_page_number()
-
-            print(serializer.data)
 
         return Response({'data': serializer.data, 'count': paginator.count,
         'numpages' : paginator.num_pages, 'nextlink': '/api/v1/search/?page=' + str(nextPage),

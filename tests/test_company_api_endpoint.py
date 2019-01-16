@@ -3,91 +3,94 @@ from rest_framework import status
 from django.test import TestCase, Client
 from django.urls import reverse
 from django.contrib.auth.models import User
-
+from rest_framework.test import APITestCase
 from rest_framework.test import APIClient
 
 from leadbook.companies.models import Company
 from leadbook.companies.serializers import CompanySerializer
 
-# Initialize the api client
-client = APIClient()
-
-class GetAllCompaniesTestCase(TestCase):
-    """ Test module for GET all companies API """
+class BasicTestCase(APITestCase):
     def setUp(self):
-        Company.objects.create(
-            name='Destiny Realty Solutions',
-            address='71 KAMPONG BAHRU ROAD 169373, Singapore',
-            phone='+65 6325 2633',
-            logo='http://acmelogos.com/images/logo-1.svg'
-        )
-        Company.objects.create(
-            name='Seleville Business Solutions',
-            address='84 Duchhesses Avenue',
-            phone='0731946286',
-            logo='path/to/logo'
-        )
+        self.client = APIClient()
+        self.api_url = 'http://localhost:8000/api/v1/companies/'
+        self.auth_url = 'http://localhost:8000/api/v1/auth/token'
 
+        self.name = 'Destiny Realty Solutions',
+        self.address = '71 KAMPONG BAHRU ROAD 169373, Singapore'
+        self.phone = '+65 6325 2633'
+        self.logo = 'http://acmelogos.com/images/logo-1.svg'
+        self.data = {
+            'address': self.address,
+            'phone': self.phone,
+            'logo': self.logo
+        }
+        self.email = 'johndoe@example.com'
+        self.username = 'johndoe'
+        self.password = 'password'
+        self.user = User.objects.create_user(
+            self.username, self.email, self.password)
+
+        user = User.objects.get(username=self.username)
+        user.is_active = True
+        user.save()
+
+        self.token = self.client.post(self.auth_url, {
+            'username': self.username,
+            'password': self.password
+        }, format='json')
+
+class CompanyTestCase(BasicTestCase):
+    """ Test module for GET all companies API """
     def test_companies_get_all_companies(self):
-        response = client.get(reverse('all_companies'))
-        companies = Company.objects.all()
+        self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token.data.get('token'))
+        response = self.client.get(self.api_url)
+        # self.maxDiff = None
+        companies = Company.objects.all().order_by('created_at')
         serializer = CompanySerializer(companies, many=True)
-        self.assertEqual(response.data, serializer.data)
+
+        self.assertEqual(response.data.get('data'), json.loads(json.dumps(serializer.data)))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_companies_get_company_by_id(self):
-        response = client.get(reverse('get_company', kwargs={ 'id':1 }))
+        self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token.data.get('token'))
+        response = self.client.get(self.api_url + '1')
+
         company = Company.objects.get(pk=1)
         serializer = CompanySerializer(company)
-        self.assertEqual(response.data.get('data'), serializer.data)
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-    def test_companies_create_new_company(self):
-        response = client.get(reverse('all_companies'))
-        companies = Company.objects.all()
-        serializer = CompanySerializer(companies, many=True)
         self.assertEqual(response.data, serializer.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_companies_update_company_details(self):
-        response = client.get(reverse('get_company', kwargs={ 'id':1 }))
         company = Company.objects.get(pk=1)
-        serializer = CompanySerializer(company)
-        self.assertEqual(response.data.get('data'), serializer.data)
+        company.phone = '0731946286'
+
+        self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token.data.get('token'))
+        response = self.client.put(self.api_url + '1', {
+        	"name": "Destiny Realty Solutions",
+        	"address": "71 KAMPONG BAHRU ROAD 169373, Singapore",
+        	"logo": "http://acmelogos.com/images/logo-1.svg",
+        	"phone": "0731946286"
+
+        })
+        self.assertEqual(response.data.get('phone'), '0731946286')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_companies_delete_company(self):
-        response = client.get(reverse('all_companies'))
-        companies = Company.objects.all()
-        serializer = CompanySerializer(companies, many=True)
-        self.assertEqual(response.data, serializer.data)
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        company = Company.objects.create(
+            name=self.name,
+            address=self.address,
+            phone=self.phone,
+            logo=self.logo
+        )
+        self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token.data.get('token'))
+        response = self.client.delete(self.api_url + '11')
+        # companies = Company.objects.all()
+        # serializer = CompanySerializer(companies, many=True)
+        # self.assertEqual(response.data, serializer.data)
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
     def test_companies_create_company_without_all_information(self):
-        response = client.get(reverse('get_company', kwargs={ 'id':1 }))
-        company = Company.objects.get(pk=1)
-        serializer = CompanySerializer(company)
-        self.assertEqual(response.data.get('data'), serializer.data)
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-
-class CompanyTestCase(TestCase):
-    def setUp(self):
-        Company.objects.create(name="Mmogo Media", address="123 Edgemoor Road", phone="0731946286", logo="path/to/file")
-
-    def test_company_was_created(self):
-        """ Test to see if the company object is being created properly """
-        company = Company.objects.get(name="Mmogo Media")
-        self.assertEqual(company.name, 'Mmogo Media')
-        self.assertEqual(company.address, '123 Edgemoor Road')
-        self.assertEqual(company.phone, '0731946286')
-        self.assertEqual(company.logo, 'path/to/file')
-
-    def test_company_was_updated(self):
-        company = Company.objects.get(name="Mmogo Media")
-        company.address = '123 Edgemoor Road, Hatfield'
-        company.save()
-
-        self.assertEqual(company.address, '123 Edgemoor Road, Hatfield')
-
-    def test_company_create_invalid_company(self):
-        self.assertEqual(True, False)
+        self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token.data.get('token'))
+        response = self.client.post(self.api_url, self.data)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)

@@ -11,6 +11,8 @@ from leadbook.users.models import UserProfile
 
 
 @api_view(['GET'])
+@authentication_classes(())
+@permission_classes(())
 def check_availability(request):
     if request.GET.get('username'):
         try:
@@ -26,9 +28,13 @@ def check_availability(request):
             return Response({ 'is_available': False }, status=status.HTTP_200_OK)
         except User.DoesNotExist:
             return Response({ 'is_available': True }, status=status.HTTP_200_OK)
+    else:
+        return Response({}, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET'])
+@authentication_classes(())
+@permission_classes(())
 def activate(request, code):
      try:
         profile = UserProfile.objects.get(activation_code=code)
