@@ -21,7 +21,7 @@ class SearchComponent extends React.Component {
     this.search = this.search.bind(this);
   }
 
-  componentWillMount(){
+  componentDidMount(){
     const { auth, history } = this.props;
     if(!auth.isLoggedIn) {
       history.push('/accounts/login')
