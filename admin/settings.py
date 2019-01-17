@@ -17,7 +17,7 @@ ALLOWED_HOSTS = []
 CORS_ORIGIN_ALLOW_ALL = False
 
 CORS_ORIGIN_WHITELIST = (
-       'localhost:3000',
+       'tawanda-leadbook.herokuapp.com',
 )
 
 # Application definition

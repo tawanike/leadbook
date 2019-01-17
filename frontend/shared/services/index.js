@@ -8,7 +8,6 @@ export default class Service{
         axios.defaults.headers = {
            'Content-Type': 'application/json',
            'Authorization': `JWT ${window.localStorage.getItem('token')}`,
-
         };
       }
     }

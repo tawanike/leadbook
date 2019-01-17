@@ -47,7 +47,7 @@ class SearchComponent extends React.Component {
 
     axios({
       method: 'get',
-      url: `http://localhost:8000/api/v1/search/?company=${this.state.company}`,
+      url: `https://tawanda-leadbook.herokuapp.com/api/v1/search/?company=${this.state.company}`,
       // headers: { "CSRF-Token": window.user.csrfToken },
     })
     .then(response => {
