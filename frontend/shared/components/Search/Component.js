@@ -23,7 +23,7 @@ class SearchComponent extends React.Component {
 
   componentWillMount(){
     const { auth, history } = this.props;
-    if(auth.isLoggedIn) {
+    if(!auth.isLoggedIn) {
       history.push('/accounts/login')
     }
   }
