@@ -28,10 +28,15 @@ class FavouritesButtonComponent extends React.Component {
   render() {
     const { favourites, company, user } = this.props;
 
+      if(true === true){
       return(
         <button onClick={ this.handleUnfollow }
-          className="Button Button__Block Button--primary Favourites__Button">Unfollow</button>
-      );
+          className="Button Button__Block Button--primary Favourites__Button">Unfollow</button>);
+      }else{
+        return(
+        <button onClick={ this.handleUnfollow }
+          className="Button Button__Block Button--outline Favourites__Button">Follow</button>);
+      }
   }
 }
 
