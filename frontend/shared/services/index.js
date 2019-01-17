@@ -18,7 +18,7 @@ export default class Service{
       return axios.get(url).then(response => response.data);
     }
 
-    findOne(endpoint, id) {
+    findAll(endpoint, id) {
       const url = `${API_URL}/${endpoint}/${id}`;
       return axios.get(url).then(response => response.data);
     }

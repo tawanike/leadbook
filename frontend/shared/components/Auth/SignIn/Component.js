@@ -19,6 +19,14 @@ class SignInComponent extends React.Component {
       this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    componentWillMount() {
+      const { auth, history } = this.props;
+      
+      if(auth.isLoggedIn){
+        history.push('/search');
+      }
+    }
+
     handleChange(event){
       const target = event.target;
       const value = target.type === 'checkbox' ? target.checked : target.value;

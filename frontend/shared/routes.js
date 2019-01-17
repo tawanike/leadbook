@@ -1,5 +1,6 @@
 import Home from './components/Home/Container';
 import Search from './components/Search/Container';
+import Favourites from './components/Favourites/Container';
 import SignIn from './components/Auth/SignIn/Container';
 import SignUp from './components/Auth/SignUp/Container';
 import SignOut from './components/Auth/SignOut/Container';
@@ -41,6 +42,10 @@ const routes = [
   {
     path: '/search',
     component: Search
+  },
+  {
+    path: '/favourites',
+    component: Favourites
   }
 ];
 

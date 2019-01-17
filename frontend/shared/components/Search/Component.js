@@ -4,6 +4,9 @@ import axios from 'axios';
 import * as actions from './actions';
 import { Link } from "react-router-dom";
 import SearchResults from './SearchResults';
+import FavouriteService from '../../services/favourites';
+const favouriteService = new FavouriteService();
+
 
 class SearchComponent extends React.Component {
   constructor(props) {
@@ -20,7 +23,7 @@ class SearchComponent extends React.Component {
 
   componentWillMount(){
     const { auth, history } = this.props;
-    if(!auth.isLoggedIn) {
+    if(auth.isLoggedIn) {
       history.push('/accounts/login')
     }
   }
@@ -71,7 +74,9 @@ class SearchComponent extends React.Component {
           <button className="Search__Button" onClick={ this.search }>Search</button>
         </div>
       </div>
-      <p className="Search__Count">Search found { search.details.count } companies.</p>
+      <p className="Search__Count">Search found { search.details.count } companies.
+        <Link to="/favourites"
+            className="btn btn-sm Button--outline float-right">My Favourites</Link></p>
       <SearchResults {...this.props} />
     </div>
   </div>);

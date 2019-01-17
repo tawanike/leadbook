@@ -5,4 +5,10 @@ export default class FavouriteService extends Service {
   constructor() {
     super();
   }
+
+  removeFavourite(endpoint, company, user) {
+    const favourite = company +'-'+ user;
+
+    return this.delete(endpoint, favourite);
+  }
 }

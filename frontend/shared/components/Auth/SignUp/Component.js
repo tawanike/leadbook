@@ -26,6 +26,15 @@ class SignUpComponent extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentWillMount() {
+    const { auth, history } = this.props;
+
+    if(auth.isLoggedIn){
+      history.push('/search');
+    }
+  }
+
+
   handleChange(event){
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -97,7 +106,7 @@ class SignUpComponent extends React.Component {
             <span className="Feedback Feedback__Text--error">Username is too short, minimun 4 characters.</span>
           ): ''}
           { this.state.usernameAvailable ? (
-            <span className="Feedback Feedback__Text--success">Username is available.</span>
+            ''
           ):(
             <span className="Feedback Feedback__Text--error">Username is already taken.</span>
           )}
@@ -108,7 +117,7 @@ class SignUpComponent extends React.Component {
               onChange={this.handleChange}
             />
           { this.state.emailAvailable ? (
-              <span className="Feedback Feedback__Text--error">Email is available.</span>
+              ''
             ):(
               <span className="Feedback Feedback__Text--error">Email is already in use.</span>
             )}
@@ -118,16 +127,6 @@ class SignUpComponent extends React.Component {
               value={this.state.password}
               onChange={this.handleChange}
             />
-          <span className="Feedback Feedback__Text--error">Passwords do not match.</span>
-          </div>
-          <div className="form-group">
-            <input type="password" name="confirm_password" placeholder="Confirm Password" className="form-control"
-              value={this.state.confirm_password}
-              onChange={this.handleChange}
-            />
-
-            <span className="Feedback Feedback__Text--error">Passwords do not match.</span>
-
           </div>
           <div className="form-group">
             <button className="btn btn-block Button">Sign Up</button>

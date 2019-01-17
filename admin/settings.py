@@ -7,7 +7,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '^h)h_rlcci-$1)ywu%g@d6ax-i@zwxmsl-1xb&y@(tlj_!9!5c'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -78,11 +78,11 @@ WSGI_APPLICATION = 'admin.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'leadbook',
-        'USER': 'leadbook',
-        'PASSWORD': 'leadbook',
-        'HOST': 'localhost',
-        'PORT': '',
+        'NAME': os.environ['DATABASE_NAME'],
+        'USER': os.environ['DATABASE_USER'],
+        'PASSWORD': os.environ['DATABASE_PASSWORD'],
+        'HOST': os.environ['DATABASE_HOST'],
+        'PORT': os.environ['DATABASE_PORT'],
     }
 }
 
@@ -149,6 +149,6 @@ WEBPACK_LOADER = {
         }
 }
 
-SENDGRID_API_KEY  = ''
+SENDGRID_API_KEY  = os.environ['SENDGRID_API_KEY']
 SENDGRID_SANDBOX_MODE_IN_DEBUG = False
 EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"

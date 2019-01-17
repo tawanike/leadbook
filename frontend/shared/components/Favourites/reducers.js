@@ -1,6 +1,6 @@
 import * as types from './types';
 
-let initialState = {};
+let initialState = [];
 
 export default function(state = initialState, action) {
   switch (action.type) {

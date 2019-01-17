@@ -34,7 +34,7 @@ class BaseTestCase(TestCase):
 class CompanyFollowTestCase(BaseTestCase):
     def test_follow_company(self):
         self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token.data.get('token'));
-        response = self.client.post(self.api_url, { 'company': 1, 'user': 1}, format='json');
+        response = self.client.post(self.api_url, { 'company': 1, 'user': self.user.id }, format='json');
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     def test_follow_unfollow_company(self):
@@ -43,7 +43,8 @@ class CompanyFollowTestCase(BaseTestCase):
 
     def test_follow_following_already_followed_company(self):
         self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token.data.get('token'))
-        response = self.client.post(self.api_url, { 'company': 1, 'user': 1}, format='json');
+        response = self.client.post(self.api_url, { 'company': 1, 'user': self.user.id }, format='json');
+        response = self.client.post(self.api_url, { 'company': 1, 'user': self.user.id }, format='json');
         # If the user already follows a company, the server will send back a status code of 200
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 

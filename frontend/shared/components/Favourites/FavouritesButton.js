@@ -9,41 +9,29 @@ const favouriteService = new FavouriteService();
 class FavouritesButtonComponent extends React.Component {
   constructor(props) {
     super(props);
-
-    this.handleFollow = this.handleFollow.bind(this);
     this.handleUnfollow = this.handleUnfollow.bind(this);
   }
 
-  handleFollow(event){
+  handleUnfollow(event){
     const { dispatch, user, company } = this.props;
-    favouriteService.create('favourites', { user: user.id, company: company.id})
+
+    favouriteService.removeFavourite(`favourites`, company.id, user.profile.id)
     .then(response => {
-      dispatch(actions.followCompany(company.id, user.id))
-      dispatch(alerts.toogle(`${ comapny.name } has been added to your favourite's list.`, 'success'))
+      dispatch(actions.unFollowCompany(company.id, user.profile.id, user.following));
+      dispatch(alerts.toggle(`You are no longer following ${ company.name }`, 'success'));
     })
     .catch(error => {
-      // Hand error
+      dispatch(alerts.toggle(`Error occured trying to remove ${ company.name } from your favourite's list, please try again.`, 'error'));
     })
-
-  }
-
-  handleUnfollow(event){
-    const { user } = this.props;
   }
 
   render() {
-    const { favourites } = this.props;
-    if(true === true){
+    const { favourites, company, user } = this.props;
+
       return(
-        <button onClick={this.handleFollow}
-          className="Button Button__Block Button--outline Favourites__Button">Follow</button>
-      );
-    } else {
-      return(
-        <button
+        <button onClick={ this.handleUnfollow }
           className="Button Button__Block Button--primary Favourites__Button">Unfollow</button>
       );
-    }
   }
 }
 

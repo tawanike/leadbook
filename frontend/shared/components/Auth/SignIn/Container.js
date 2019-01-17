@@ -4,6 +4,7 @@ import Component from "./Component";
 
 const mapStateToProps = state => {
   return {
+    auth: state.auth
   };
 };
 

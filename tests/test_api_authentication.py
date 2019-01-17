@@ -53,27 +53,6 @@ class UserAuthenticationTestCase(TestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue('token' in response.data)
 
-    def test_auth_refresh_user_token(self):
-        user = User.objects.get(username=self.username)
-        user.is_active = True
-        user.save()
-
-        token = self.client.post(self.auth_url, {
-            'username': self.username, 'password': self.password }, format='json')
-
-        response = self.client.post(self.api_url + 'refresh/', { "token": token.data.get('token'),
-            "username": self.username,
-	        "password": self.password }, format='json')
-
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data.get('token'), token.data.get('token'))
-
-    def test_auth_verify_bad_user_token(self):
-        resp = self.client.post(self.api_url + 'verify', {'token': 'qwerty',"username": self.username,
-	"password": self.password }, format='json')
-        self.assertEqual(resp.status_code, status.HTTP_400_BAD_REQUEST)
-
-
     def test_auth_bad_credentials(self):
         response = self.client.post(self.auth_url, {
             'username': 'johndoe',
