@@ -38,9 +38,16 @@ class FavouritesListComponent extends React.Component {
   }
 
   render() {
-    return(<div>
-      { this.renderResults() }
-    </div>);
+    const { favourites } = this.props;
+    if(favourites.data.length > 0){
+      return(<div>
+        { this.renderResults() }
+      </div>);
+    } else {
+      return(<h2 className="Favourites--empty">
+        You do not have any favourite companies.
+      </h2>);
+    }
   }
 
 }

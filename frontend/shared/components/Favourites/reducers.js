@@ -1,9 +1,7 @@
 import * as types from './types';
 
 let initialState = {
-  favourites: {
-    data: []
-  }
+  data: []
 };
 
 export default function(state = initialState, action) {
