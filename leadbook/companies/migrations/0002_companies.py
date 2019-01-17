@@ -7,7 +7,18 @@ def create_data(apps, schema_editor):
     Customer = apps.get_model('companies', 'Company')
 
     for company in companies:
-        Customer(name=company.get('name'), address=company.get('address'), phone=company.get('phone'), logo=company.get('logo')).save()
+        Customer(
+        name=company.get('name'),
+        building=company.get('building'),
+        address_line_one=company.get('address_line_one'),
+        address_line_two=company.get('address_line_two'),
+        city=company.get('city'),
+        province=company.get('province'),
+        country=company.get('country'),
+        postcode=company.get('postcode'),
+        phone=company.get('phone'),
+        logo=company.get('logo')
+    ).save()
 
 
 class Migration(migrations.Migration):

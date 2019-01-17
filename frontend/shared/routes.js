@@ -32,7 +32,7 @@ const routes = [
     component: ResetPassword
   },
   {
-    path: '/accounts/create-password',
+    path: '/accounts/create-password/:code',
     component: CreatePassword
   },
   {

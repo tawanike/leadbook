@@ -27,10 +27,14 @@ class ActivateComponent extends React.Component {
     if (auth.error) {
       return(<div>
         <h4>Account not activated, the activation code is incorrect.</h4>
-        <p>Resend activation code</p>
+
       </div>);
     } else {
-      dispatch(alertActions.toggle('success', 'Account activated.'));
+      return(<div>
+        <h4>Account has been activated successfully.</h4>
+        <p><Link to="/accounts/login">Log In</Link></p>
+
+      </div>);
     }
   }
 

@@ -28,19 +28,5 @@ def create_user_profile(sender, instance, created, **kwargs):
        profile, created = UserProfile.objects.get_or_create(user=instance, activation_code=activation_code)
 
 
-    # Send activation email only if the instance is being created
-    subject = 'Activation Email'
-    context = {
-        'first_name': instance.first_name,
-        'activation_code': activation_code
-    }
-    print('PANO_ANA')
-    text_content = render_to_string('emails/activation.txt', context)
-    html_content = get_template('emails/activation.html').render(context)
-    msg = EmailMultiAlternatives(subject, text_content, 'postman@maillist.company', [instance.email])
-    msg.attach_alternative(html_content, "text/html")
-    msg.send()
-
-
 pre_save.connect(deactivate_user, sender=User)
 post_save.connect(create_user_profile, sender=User)
