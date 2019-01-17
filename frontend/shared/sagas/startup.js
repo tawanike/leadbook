@@ -37,8 +37,9 @@ function* handleStartup() {
 
       const router = yield select(getRouter);
       if(pages.includes(router.location.pathname)){
-        yield put(alertsActions.toggle('You are already logged in.', 'warning'))
         history.push('/search');
+        yield put(alertsActions.toggle('You are already logged in.', 'warning'))
+
       }
 
       yield put(setUserSignedIn(response.data));

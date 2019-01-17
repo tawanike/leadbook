@@ -32,8 +32,8 @@ class FavouritesComponent extends React.Component {
       dispatch(actions.getFavourites(response.data));
     })
     .catch(error => {
-      console.log('Error');
-    })
+      dispatch(alerts.toggle(`Error occured trying to your favourites list.`, 'error'));
+    });
   }
 
 

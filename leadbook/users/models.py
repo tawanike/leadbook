@@ -21,25 +21,25 @@ def deactivate_user(sender, instance, **kwargs):
         instance.is_active = False
 
 def create_user_profile(sender, instance, created, **kwargs):
-    print('PANO_ANA')
+
     activation_code = hashlib.sha224(uuid.uuid4().hex.encode('utf-8')).hexdigest()
 
     if created:
        profile, created = UserProfile.objects.get_or_create(user=instance, activation_code=activation_code)
 
-    if instance._state.adding is True:
-        # Send activation email only if the instance is being created
-        subject = 'Activation Email'
-        context = {
-            'first_name': instance.first_name,
-            'activation_code': activation_code
-        }
 
-        text_content = render_to_string('emails/activation.txt', context)
-        html_content = get_template('emails/activation.html').render(context)
-        msg = EmailMultiAlternatives(subject, text_content, 'postman@maillist.company', [recipient])
-        msg.attach_alternative(html_content, "text/html")
-        msg.send()
+    # Send activation email only if the instance is being created
+    subject = 'Activation Email'
+    context = {
+        'first_name': instance.first_name,
+        'activation_code': activation_code
+    }
+    print('PANO_ANA')
+    text_content = render_to_string('emails/activation.txt', context)
+    html_content = get_template('emails/activation.html').render(context)
+    msg = EmailMultiAlternatives(subject, text_content, 'postman@maillist.company', [instance.email])
+    msg.attach_alternative(html_content, "text/html")
+    msg.send()
 
 
 pre_save.connect(deactivate_user, sender=User)
