@@ -21,10 +21,10 @@ class SignInComponent extends React.Component {
 
     componentWillMount() {
       const { auth, history } = this.props;
-      
-      if(auth.isLoggedIn){
-        history.push('/search');
-      }
+
+      // if(auth.isLoggedIn){
+      //   history.push('/search');
+      // }
     }
 
     handleChange(event){
