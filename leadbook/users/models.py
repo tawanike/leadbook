@@ -21,7 +21,7 @@ def deactivate_user(sender, instance, **kwargs):
         instance.is_active = False
 
 def create_user_profile(sender, instance, created, **kwargs):
-
+    print('PANO_ANA')
     activation_code = hashlib.sha224(uuid.uuid4().hex.encode('utf-8')).hexdigest()
 
     if created:

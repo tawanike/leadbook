@@ -1,6 +1,7 @@
 import '../Style.scss';
 import React from 'react';
 import * as actions from '../actions';
+import * as alerts from '../../Alerts/actions';
 import { Link } from 'react-router-dom';
 
 import AuthService from '../../../services/auth';
@@ -65,12 +66,29 @@ class SignUpComponent extends React.Component {
   handleSubmit(event){
     event.preventDefault();
     const { dispatch, history } = this.props;
-    authService.create('users/', this.state)
+    authService.create('users', this.state)
     .then(response => {
       console.log(response.data)
+      if(response.status === 201){
+        dispatch(alerts.toggle(
+
+'Your account has been created successfully, please check your inbos for activation email.', 'success' ));
+        this.setState({
+          first_name: "",
+          last_name: "",
+          username: "",
+          email: "",
+          password: "",
+          confirm_password: "",
+          emailAvailable: true,
+          usernameAvailable: true
+        });
+        history.push('/accounts/login')
+      }
     })
     .catch(error => {
       console.log(error)
+      dispatch(alerts.toggle('An error occured trying to create your account, please try again..', 'error' ));
     });
   }
 

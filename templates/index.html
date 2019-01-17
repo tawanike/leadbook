@@ -7,9 +7,22 @@
     <title>Leadbook</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
     {% render_bundle 'main' 'css' %}
+    <style>
+    .Loading {
+      height: 100vh;
+      width: 100%;
+      text-align: center;
+      font-size: 34px;
+      background-color: #ff520d;
+      padding: 150px;
+      color: white;
+    }
+    </style>
   </head>
   <body>
-    <div id="app">Loading...</div>
+    <div id="app">
+      <div class="Loading">Loading...</div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
       crossorigin="anonymous"></script>
