@@ -1,4 +1,4 @@
 module.exports = {
-  api: '',
-  apiDev: 'http://localhost:8000/api/v1/'
+  api: 'https://tawanda-leadbook.herokuapp.com',
+  apiDev: 'https://tawanda-leadbook.herokuapp.com'
 }
