@@ -152,3 +152,6 @@ WEBPACK_LOADER = {
 SENDGRID_API_KEY  = os.environ['SENDGRID_API_KEY']
 SENDGRID_SANDBOX_MODE_IN_DEBUG = False
 EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+
+import django_heroku
+django_heroku.settings(locals())
