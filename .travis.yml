@@ -15,6 +15,13 @@ before_install:
 
 env:
   - TOXENV=py35
+  - SECRET_KEY=0d77b6b3e461830202b0338b8e47fcd1
+  - DATABASE_HOST=localhost
+  - DATABASE_NAME=leadbook
+  - DATABASE_PASSWORD=
+  - DATABASE_PORT=
+  - DATABASE_USER=postgres
+  - SENDGRID_API_KEY=
 
 install:
   - pip install -r requirements.txt
