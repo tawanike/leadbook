@@ -1,12 +1,6 @@
 import axios from 'axios';
-const API_URL = 'http://localhost:8000';
+import Service from './index';
 
-export default class SearchService{
-
+export default class SearchService extends Service {
     constructor(){}
-
-    getCustomers() {
-        const url = `${API_URL}/api/customers/`;
-        return axios.get(url).then(response => response.data);
-    }
 }

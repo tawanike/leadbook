@@ -2,7 +2,7 @@ import { logger } from 'redux-logger';
 const jwtDecode = require('jwt-decode');
 import thunkMiddleware from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
-import authMiddleware from './middleware/auth';
+//import authMiddleware from './middleware/auth';
 import createHistory from 'history/createBrowserHistory';
 import { compose, createStore, applyMiddleware } from 'redux';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
@@ -18,7 +18,7 @@ const enhancers = [];
 const middleware = [
   routerMiddleware(history),
   thunkMiddleware,
-  authMiddleware,
+  //authMiddleware,
   logger,
   sagaMiddleware
 ];

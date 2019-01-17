@@ -2,31 +2,37 @@ import axios from 'axios';
 import globals from '../globals';
 const jwtDecode = require('jwt-decode');
 import { takeLatest, call, put } from 'redux-saga/effects';
+import { getFavouriteCompanies } from '../components/Favourites/actions';
+import * as alertsActions from '../components/Alerts/actions';
+import FavouriteService from '../services/favourites';
+
+const favouriteService = new FavouriteService();
 
 export default function* userWatcherSaga() {
-  yield takeLatest("GET_USER_PROFILE", userWorkerSaga);
+  yield takeLatest('GET_USER_PROFILE_SUCCESS', userWorkerSaga);
 }
 
-function getUser() {
+function getUserFavourites() {
   const api = (process.env.NODE_ENV === 'production') ? globals.api : globals.apiDev;
-  const decoded = jwtDecode(window.localStorage.getItem('token'));
-  console.log('GET_USER_PROFILE', 'CALLED_BY_A_SAGA')
-  return axios({
-    method: 'get',
-    url: `${api}/users/${decoded.id} `,
-  });
+  if(window.localStorage.getItem('token')) {
+    const decoded = jwtDecode(window.localStorage.getItem('token'));
+
+    return axios({
+      method: 'get',
+      url: `${api}favourites/${decoded.user_id}`,
+    });
+  }
 }
 
 function* userWorkerSaga() {
-  console.log('userWorkerSaga', 'CALLED_BY_A_SAGA')
   try {
-    const response = yield call(getUser);
+    const response = yield call(getUserFavourites);
 
     // dispatch a success action to the store with the new dog
-    yield put({ type: 'GET_USER_PROFILE_SUCCESS', payload: response.data });
+    yield put(getFavouriteCompanies(response.data));
 
   } catch (error) {
     // dispatch a failure action to the store with the error
-    yield put({ type: "GET_USER_PROFILE_FAILURE", error });
+    yield put({ type: "GET_USER_FOLLOWING_FAILURE", error });
   }
 }

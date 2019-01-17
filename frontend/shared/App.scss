@@ -12,6 +12,8 @@ a:hover {
   color: #ffffff;
   text-transform: uppercase;
   border: 1px solid #ff520d;
+  padding: 6px 12px;
+  border-radius: 3px;
 
   @at-root #{&}--primary{
     background-color: #ff520d;
@@ -25,6 +27,17 @@ a:hover {
   @at-root #{&}--outline {
     background-color: #ffffff;
     border: 1px solid #ff520d;
+    color: #ff520d;
+  }
+
+  @at-root #{&}--outline:hover {
+    background-color: #ff520d;
+    border: 1px solid #ff520d;
+    color: #ffffff;
+  }
+
+  @at-root #{&}__Block {
+    width: 100%;
   }
 
 }

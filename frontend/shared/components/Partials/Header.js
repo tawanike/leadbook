@@ -16,14 +16,27 @@ class HeaderComponent extends React.Component {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
-            <li className="nav-item">
-              <Link className="nav-link" to="/accounts/signup">Sign Up</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/accounts/login">Log In</Link>
-            </li>
-          </ul>
+          { this.props.auth.isLoggedIn ? (
+              <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
+                <li className="nav-item">
+                  <Link className="nav-link" to="/search">Search</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/accounts/logout">Log Out</Link>
+                </li>
+              </ul>
+            ): (
+              <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
+                <li className="nav-item">
+                  <Link className="nav-link" to="/accounts/signup">Sign Up</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/accounts/login">Log In</Link>
+                </li>
+              </ul>
+
+            )}
+
         </div>
       </div>
     </nav>);

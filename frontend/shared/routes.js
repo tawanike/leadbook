@@ -12,7 +12,7 @@ const routes = [
   {
     path: '/',
     exact: true,
-    component: Home
+    component: SignIn
   },
   {
     path: '/accounts/login',

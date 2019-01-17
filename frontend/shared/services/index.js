@@ -2,8 +2,8 @@ import axios from 'axios';
 const API_URL = 'http://localhost:8000/api/v1';
 
 axios.defaults.headers = {
-       'Content-Type': 'application/json',
-   }
+   'Content-Type': 'application/json',
+};
 
 export default class Service{
 
@@ -13,15 +13,14 @@ export default class Service{
       }
     }
 
-
     find(endpoint) {
-        const url = `${API_URL}${endpoint}`;
-        return axios.get(url).then(response => response.data);
+      const url = `${API_URL}${endpoint}`;
+      return axios.get(url).then(response => response.data);
     }
 
     findOne(endpoint, id) {
-        const url = `${API_URL}/${endpoint}/${id}`;
-        return axios.get(url).then(response => response.data);
+      const url = `${API_URL}/${endpoint}/${id}`;
+      return axios.get(url).then(response => response.data);
     }
 
     findByUsernameOrEmail(endpoint, query, field=null) {
@@ -38,17 +37,18 @@ export default class Service{
         const url = `${API_URL}/${endpoint}/${id}`;
         return axios.delete(url);
     }
+
     create(endpoint, data){
-        return axios({
-          method: 'POST',
-          url: `${API_URL}/${endpoint}`,
-          data: data
-        });
+      return axios({
+        method: 'POST',
+        url: `${API_URL}/${endpoint}`,
+        data: data
+      });
     }
 
     update(endpoint, data){
-        const url = `${API_URL}${endpoint}/${id}`;
-        return axios.put(url, data);
+      const url = `${API_URL}${endpoint}/${id}`;
+      return axios.put(url, data);
     }
 
     activate(activation_code) {
@@ -57,10 +57,10 @@ export default class Service{
     }
 
     authorise(credentials){
-        return axios({
-          method: 'POST',
-          url: `${API_URL}/auth/`,
-          data: credentials
-        });
+      return axios({
+        method: 'POST',
+        url: `${API_URL}/auth/`,
+        data: credentials
+      });
     }
 }

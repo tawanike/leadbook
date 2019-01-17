@@ -2,7 +2,7 @@ import React from 'react';
 import * as actions from '../actions';
 import * as alerts from '../../Alerts/actions';
 import { Link } from "react-router-dom";
-import * as jwtDecode from 'jwt-decode';
+const jwtDecode = require('jwt-decode');
 
 import AuthService from '../../../services/auth';
 const authService = new AuthService();
@@ -42,7 +42,7 @@ class SignInComponent extends React.Component {
           const decoded = jwtDecode(token);
           dispatch(actions.getUser(decoded));
           dispatch(alerts.toggle('Sign In successful.', 'success'));
-          history.replace("/search");
+          history.push('/search');
         }
       })
       .catch(error => {

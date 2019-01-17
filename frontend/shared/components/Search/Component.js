@@ -69,7 +69,6 @@ class SearchComponent extends React.Component {
     </div>
   </div>);
   }
-
 }
 
 export default SearchComponent;
