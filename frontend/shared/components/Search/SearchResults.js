@@ -30,7 +30,7 @@ class SearchResultComponent extends React.Component {
       <div className="Result__Side">
         <p>Category</p>
         <p>Tel: { result.phone }</p>
-        <p><FavouritesButtonComponent company={ result.id } { ...this.props } /></p>
+        <p><FavouritesButtonComponent company={ result } { ...this.props } /></p>
       </div>
     </div>)
     });

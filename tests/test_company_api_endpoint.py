@@ -16,11 +16,23 @@ class BasicTestCase(APITestCase):
         self.auth_url = 'http://localhost:8000/api/v1/auth/token'
 
         self.name = 'Destiny Realty Solutions',
-        self.address = '71 KAMPONG BAHRU ROAD 169373, Singapore'
+        self.address_line_one = '71 KAMPONG BAHRU ROAD'
+        self.address_line_two = ''
+        self.city = 'Singapore'
+        self.building = 'Tanjong Pagar Centre'
+        self.country = 'Singapore'
+        self.postcode = '169373'
+        self.province = ''
         self.phone = '+65 6325 2633'
         self.logo = 'http://acmelogos.com/images/logo-1.svg'
         self.data = {
-            'address': self.address,
+            'address_line_one': self.address_line_one,
+            'address_line_two': self.address_line_two,
+            'city': self.city,
+            'building': self.building,
+            'country': self.country,
+            'postcode': self.postcode,
+            'province': self.province,
             'phone': self.phone,
             'logo': self.logo
         }
@@ -68,7 +80,12 @@ class CompanyTestCase(BasicTestCase):
         self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token.data.get('token'))
         response = self.client.put(self.api_url + '1', {
         	"name": "Destiny Realty Solutions",
-        	"address": "71 KAMPONG BAHRU ROAD 169373, Singapore",
+            "building": "Tanjong Pagar Centre",
+        	"address_line_one": "71 KAMPONG BAHRU ROAD 169373, Singapore",
+            "address_line_two": "Marina Bay",
+            "postcode": "169373",
+            "city": "Singapore",
+            "country": "Singapore",
         	"logo": "http://acmelogos.com/images/logo-1.svg",
         	"phone": "0731946286"
 
@@ -79,7 +96,7 @@ class CompanyTestCase(BasicTestCase):
     def test_companies_delete_company(self):
         company = Company.objects.create(
             name=self.name,
-            address=self.address,
+            address_line_one=self.address_line_one,
             phone=self.phone,
             logo=self.logo
         )

@@ -20,7 +20,7 @@ class BaseTestCase(TestCase):
             self.username, self.email, self.password)
         self.profile = UserProfile.objects.get(user__username=self.username)
         self.api_url = 'http://localhost:8000/api/v1/users/'
-        self.auth_url = 'http://localhost:8000/api/v1/auth/token'
+        self.auth_url = 'http://localhost:8000/api/v1/auth/token/'
         self.client = APIClient()
         self.data = {
             'first_name': 'Jane',
@@ -79,6 +79,7 @@ class UserTestCase(BaseTestCase):
 
     def test_users_get_user_profile(self):
         """ Get a user's profile """
+        self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token.data.get('token'))
         new_user = self.client.post(self.api_url, { 'first_name': 'Jean',
                                                     'last_name': 'Doe',
                                                     'email': 'janedoe@example.com',
@@ -86,9 +87,7 @@ class UserTestCase(BaseTestCase):
                                                     'password': 'qwerty'
                                                 }, format='json')
 
-        self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token.data.get('token'))
-
-        response = self.client.get(self.api_url + '1', format='json')
+        response = self.client.get(self.api_url + '5', format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data.get('username'), self.username)
 
@@ -96,10 +95,6 @@ class UserTestCase(BaseTestCase):
         """ Check to make sure account is inactive when created """
         user = User.objects.get(username=self.username)
         self.assertEqual(user.is_active, False)
-
-    def test_users_send_activation_email(self):
-        """ Send verification email  """
-        self.assertEqual(True, False)
 
     def test_users_account_activation(self):
         """ Verify email address """
@@ -116,13 +111,13 @@ class UserTestCase(BaseTestCase):
         """ Update user's first_name """
         self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token.data.get('token'))
 
-        new_user = self.client.post(self.api_url, { 'first_name': 'Jean',
+        response = self.client.put(self.api_url, { 'first_name': 'Jean',
                                                     'last_name': 'Doe',
                                                     'email': 'janedoe@example.com',
                                                     'username': 'janedoe'
                                                 }, format='json')
 
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         resp = self.client.get(self.api_url + '1', self.data, format='json')
 
         """ Check if API returns an updated user's first_name  """
@@ -131,6 +126,6 @@ class UserTestCase(BaseTestCase):
 
     def test_users_delete_profile(self):
         self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token.data.get('token'))
-        response = self.client.delete(self.api_url + '1')
+        response = self.client.delete(self.api_url + '8')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(response.data.get('username'), None)

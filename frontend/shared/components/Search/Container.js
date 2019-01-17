@@ -4,7 +4,10 @@ import Component from "./Component";
 
 const mapStateToProps = state => {
   return {
-    search: state.search
+    auth: state.auth,
+    search: state.search,
+    user: state.user,
+    favourites: state.favourites
   };
 };
 

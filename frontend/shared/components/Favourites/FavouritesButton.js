@@ -1,8 +1,10 @@
 import './Styles.scss';
 import React from 'react';
-import axios from 'axios';
 import * as actions from './actions';
+import * as alerts from '../Alerts/actions';
 import { Link } from "react-router-dom";
+import FavouriteService from '../../services/favourites';
+const favouriteService = new FavouriteService();
 
 class FavouritesButtonComponent extends React.Component {
   constructor(props) {
@@ -14,7 +16,15 @@ class FavouritesButtonComponent extends React.Component {
 
   handleFollow(event){
     const { dispatch, user, company } = this.props;
-    dispatch(actions.followCompany(company, user.id))
+    favouriteService.create('favourites', { user: user.id, company: company.id})
+    .then(response => {
+      dispatch(actions.followCompany(company.id, user.id))
+      dispatch(alerts.toogle(`${ comapny.name } has been added to your favourite's list.`, 'success'))
+    })
+    .catch(error => {
+      // Hand error
+    })
+
   }
 
   handleUnfollow(event){

@@ -1,3 +1,4 @@
+import jwt
 import json
 from rest_framework import status
 from django.test import TestCase, Client
@@ -13,7 +14,7 @@ class BaseTestCase(TestCase):
 
     def setUp(self):
         self.client = APIClient()
-        self.api_url = 'http://localhost:8000/api/v1/search/?company='
+        self.api_url = 'http://localhost:8000/api/v1/favourites/'
         self.auth_url = 'http://localhost:8000/api/v1/auth/token'
         self.email = 'johndoe@example.com'
         self.username = 'johndoe'
@@ -32,12 +33,9 @@ class BaseTestCase(TestCase):
 
 class CompanyFollowTestCase(BaseTestCase):
     def test_follow_company(self):
-        self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token.data.get('token'))
-        self.assertEqual(True, False)
-
-    def test_follow_check_if_user_already_follows_company(self):
-        self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token.data.get('token'))
-        self.assertEqual(True, False)
+        self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token.data.get('token'));
+        response = self.client.post(self.api_url, { 'company': 1, 'user': 1}, format='json');
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     def test_follow_unfollow_company(self):
         self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token.data.get('token'))
@@ -45,7 +43,9 @@ class CompanyFollowTestCase(BaseTestCase):
 
     def test_follow_following_already_followed_company(self):
         self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token.data.get('token'))
-        self.assertEqual(True, False)
+        response = self.client.post(self.api_url, { 'company': 1, 'user': 1}, format='json');
+        # If the user already follows a company, the server will send back a status code of 200
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_follow_unfollowing_already_unfollowed_company(self):
         self.client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token.data.get('token'))

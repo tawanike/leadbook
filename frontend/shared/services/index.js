@@ -1,15 +1,15 @@
 import axios from 'axios';
 const API_URL = 'http://localhost:8000/api/v1';
 
-axios.defaults.headers = {
-   'Content-Type': 'application/json',
-};
-
 export default class Service{
 
     constructor(){
-      this.config = {
-        headers: { 'Content-Type': 'application/json' },
+      if(window.localStorage.getItem('token')){
+        axios.defaults.headers = {
+           'Content-Type': 'application/json',
+           'Authorization': `JWT ${window.localStorage.getItem('token')}`,
+
+        };
       }
     }
 
@@ -41,7 +41,7 @@ export default class Service{
     create(endpoint, data){
       return axios({
         method: 'POST',
-        url: `${API_URL}/${endpoint}`,
+        url: `${API_URL}/${endpoint}/`,
         data: data
       });
     }

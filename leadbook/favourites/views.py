@@ -7,14 +7,20 @@ from rest_framework import status
 from leadbook.favourites.models import Favourite
 from leadbook.favourites.serializers import FavouriteSerializer
 
-
 @api_view(['POST'])
 def create(request):
     if request.method == 'POST':
-        serializer = FavouriteSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        try:
+            # Check if the user already follows the company before following
+            follow = Favourite.objects.get(company=1, user=1)
+            return Response(status=status.HTTP_200_OK)
+        except Favourite.DoesNotExist:
+            # DoesNotExist exception is triggered follow the company
+            serializer = FavouriteSerializer(data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+        print('NOT_VALID')
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     else:
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

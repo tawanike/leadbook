@@ -18,6 +18,13 @@ class SearchComponent extends React.Component {
     this.search = this.search.bind(this);
   }
 
+  componentWillMount(){
+    const { auth, history } = this.props;
+    if(!auth.isLoggedIn) {
+      history.push('/accounts/login')
+    }
+  }
+
   handleChange(event){
     const target = event.target;
     const value = target.type === "checkbox" ? target.checked : target.value;

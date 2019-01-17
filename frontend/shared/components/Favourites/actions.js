@@ -8,5 +8,8 @@ export function getFavouriteCompanies(companies){
 }
 
 export function followCompany(companyId, userId) {
-
+  return {
+    type: types.FOLLOW_COMPANY,
+    payload: { company: companyId, user: userId }
+  }
 }
