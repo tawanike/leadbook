@@ -27,3 +27,7 @@ Run ` npm run build ` or using yarn ` yarn build ` to build the ReactJS bundles.
 ### Development server
 
 The development server runs on ` http://localhost:8000 `
+
+To run API tests ` python manage.py test`. All the tests are found in the tests folder.
+
+To run tests for React ` yarn test `
