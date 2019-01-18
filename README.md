@@ -31,3 +31,18 @@ The development server runs on ` http://localhost:8000 `
 To run API tests ` python manage.py test`. All the tests are found in the tests folder.
 
 To run tests for React ` yarn test `
+
+Test companies
+
+```
+  Destiny Realty Solutions,
+  Weenie Beenie,
+  Video Concepts,
+  Gas Depot,
+  Virgin Megastores,
+  Stop N Shop,
+  Old China Stores,
+  Magik Gray,
+  Mansmann,
+  Borders Books
+```
