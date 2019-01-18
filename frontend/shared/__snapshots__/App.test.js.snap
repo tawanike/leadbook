@@ -3,7 +3,7 @@
 exports[`App should render correctly. 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <App />,
+  Symbol(enzyme.__unrendered__): <Connect(App) />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
@@ -15,427 +15,59 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "host",
+    "nodeType": "function",
     "props": Object {
-      "children": Array [
-        <HeaderComponent />,
-        <Connect(AlertComponent) />,
-        <div>
-          <Route
-            component={[Function]}
-            exact={true}
-            path="/"
-          />
-          <Route
-            component={[Function]}
-            path="/accounts/login"
-          />
-          <Route
-            component={[Function]}
-            path="/accounts/signup"
-          />
-          <Route
-            component={[Function]}
-            path="/accounts/logout"
-          />
-          <Route
-            component={[Function]}
-            path="/accounts/reset-password"
-          />
-          <Route
-            component={[Function]}
-            path="/accounts/create-password"
-          />
-          <Route
-            component={[Function]}
-            path="/accounts/activate/:code"
-          />
-          <Route
-            component={[Function]}
-            path="/search"
-          />
-        </div>,
-      ],
-      "className": "Wrapper",
+      "children": [Function],
     },
     "ref": null,
-    "rendered": Array [
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {},
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {},
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
-          "children": Array [
-            <Route
-              component={[Function]}
-              exact={true}
-              path="/"
-            />,
-            <Route
-              component={[Function]}
-              path="/accounts/login"
-            />,
-            <Route
-              component={[Function]}
-              path="/accounts/signup"
-            />,
-            <Route
-              component={[Function]}
-              path="/accounts/logout"
-            />,
-            <Route
-              component={[Function]}
-              path="/accounts/reset-password"
-            />,
-            <Route
-              component={[Function]}
-              path="/accounts/create-password"
-            />,
-            <Route
-              component={[Function]}
-              path="/accounts/activate/:code"
-            />,
-            <Route
-              component={[Function]}
-              path="/search"
-            />,
-          ],
+    "rendered": [Function],
+    "type": Object {
+      "$$typeof": Symbol(react.context),
+      "_calculateChangedBits": null,
+      "_context": Object {
+        "$$typeof": Symbol(react.context),
+        "Consumer": [Circular],
+        "Provider": Object {
+          "$$typeof": Symbol(react.provider),
+          "_context": [Circular],
         },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": "0",
-            "nodeType": "class",
-            "props": Object {
-              "component": [Function],
-              "exact": true,
-              "path": "/",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "1",
-            "nodeType": "class",
-            "props": Object {
-              "component": [Function],
-              "path": "/accounts/login",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "2",
-            "nodeType": "class",
-            "props": Object {
-              "component": [Function],
-              "path": "/accounts/signup",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "3",
-            "nodeType": "class",
-            "props": Object {
-              "component": [Function],
-              "path": "/accounts/logout",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "4",
-            "nodeType": "class",
-            "props": Object {
-              "component": [Function],
-              "path": "/accounts/reset-password",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "5",
-            "nodeType": "class",
-            "props": Object {
-              "component": [Function],
-              "path": "/accounts/create-password",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "6",
-            "nodeType": "class",
-            "props": Object {
-              "component": [Function],
-              "path": "/accounts/activate/:code",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": "7",
-            "nodeType": "class",
-            "props": Object {
-              "component": [Function],
-              "path": "/search",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-        ],
-        "type": "div",
+        "_calculateChangedBits": null,
+        "_currentRenderer": null,
+        "_currentRenderer2": null,
+        "_currentValue": null,
+        "_currentValue2": null,
+        "_threadCount": 0,
       },
-    ],
-    "type": "div",
+    },
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "host",
+      "nodeType": "function",
       "props": Object {
-        "children": Array [
-          <HeaderComponent />,
-          <Connect(AlertComponent) />,
-          <div>
-            <Route
-              component={[Function]}
-              exact={true}
-              path="/"
-            />
-            <Route
-              component={[Function]}
-              path="/accounts/login"
-            />
-            <Route
-              component={[Function]}
-              path="/accounts/signup"
-            />
-            <Route
-              component={[Function]}
-              path="/accounts/logout"
-            />
-            <Route
-              component={[Function]}
-              path="/accounts/reset-password"
-            />
-            <Route
-              component={[Function]}
-              path="/accounts/create-password"
-            />
-            <Route
-              component={[Function]}
-              path="/accounts/activate/:code"
-            />
-            <Route
-              component={[Function]}
-              path="/search"
-            />
-          </div>,
-        ],
-        "className": "Wrapper",
+        "children": [Function],
       },
       "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {},
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {},
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": Array [
-              <Route
-                component={[Function]}
-                exact={true}
-                path="/"
-              />,
-              <Route
-                component={[Function]}
-                path="/accounts/login"
-              />,
-              <Route
-                component={[Function]}
-                path="/accounts/signup"
-              />,
-              <Route
-                component={[Function]}
-                path="/accounts/logout"
-              />,
-              <Route
-                component={[Function]}
-                path="/accounts/reset-password"
-              />,
-              <Route
-                component={[Function]}
-                path="/accounts/create-password"
-              />,
-              <Route
-                component={[Function]}
-                path="/accounts/activate/:code"
-              />,
-              <Route
-                component={[Function]}
-                path="/search"
-              />,
-            ],
+      "rendered": [Function],
+      "type": Object {
+        "$$typeof": Symbol(react.context),
+        "_calculateChangedBits": null,
+        "_context": Object {
+          "$$typeof": Symbol(react.context),
+          "Consumer": [Circular],
+          "Provider": Object {
+            "$$typeof": Symbol(react.provider),
+            "_context": [Circular],
           },
-          "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": "0",
-              "nodeType": "class",
-              "props": Object {
-                "component": [Function],
-                "exact": true,
-                "path": "/",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "1",
-              "nodeType": "class",
-              "props": Object {
-                "component": [Function],
-                "path": "/accounts/login",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "2",
-              "nodeType": "class",
-              "props": Object {
-                "component": [Function],
-                "path": "/accounts/signup",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "3",
-              "nodeType": "class",
-              "props": Object {
-                "component": [Function],
-                "path": "/accounts/logout",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "4",
-              "nodeType": "class",
-              "props": Object {
-                "component": [Function],
-                "path": "/accounts/reset-password",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "5",
-              "nodeType": "class",
-              "props": Object {
-                "component": [Function],
-                "path": "/accounts/create-password",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "6",
-              "nodeType": "class",
-              "props": Object {
-                "component": [Function],
-                "path": "/accounts/activate/:code",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": "7",
-              "nodeType": "class",
-              "props": Object {
-                "component": [Function],
-                "path": "/search",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-          ],
-          "type": "div",
+          "_calculateChangedBits": null,
+          "_currentRenderer": null,
+          "_currentRenderer2": null,
+          "_currentValue": null,
+          "_currentValue2": null,
+          "_threadCount": 0,
         },
-      ],
-      "type": "div",
+      },
     },
   ],
   Symbol(enzyme.__options__): Object {
